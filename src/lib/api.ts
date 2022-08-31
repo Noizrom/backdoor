@@ -1,6 +1,12 @@
 import { errors, ErrorType } from './store';
 
-const URL_ORIGIN = `http://${location.hostname}:4010/api/send_command`
+let URL_ORIGIN
+
+if (import.meta.env.PROD) {
+  URL_ORIGIN = `http://${location.href}/api/send_command`
+} else {
+  URL_ORIGIN = `http://${location.hostname}:4010/api/send_command`
+}
 
 export async function send_command(command: string) {
   try {
@@ -18,7 +24,7 @@ export async function send_command(command: string) {
         'sec-fetch-dest': 'empty',
         'sec-fetch-mode': 'cors',
         'sec-fetch-site': 'same-origin',
-        Referer: 'http://localhost:4010/api/docs',
+        Referer: `${location.href}/api/docs`,
         'Referrer-Policy': 'strict-origin-when-cross-origin',
       },
       method: 'GET',
