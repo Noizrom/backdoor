@@ -3,7 +3,7 @@ import { errors, ErrorType } from './store';
 let URL_ORIGIN
 
 if (import.meta.env.PROD) {
-  URL_ORIGIN = `${location.href}/api/send_command`
+  URL_ORIGIN = `${location.href}api/send_command`
 } else {
   URL_ORIGIN = `http://${location.hostname}:4010/api/send_command`
 }
